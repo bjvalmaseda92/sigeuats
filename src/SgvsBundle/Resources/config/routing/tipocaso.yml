@@ -1,0 +1,33 @@
+tipos-casos:
+    path:     /
+    defaults: { _controller: "SgvsBundle:TipoCaso:index" }
+
+tipos-casos_show:
+    path:     /{id}/show
+    defaults: { _controller: "SgvsBundle:TipoCaso:show" }
+
+tipos-casos_new:
+    path:     /new
+    defaults: { _controller: "SgvsBundle:TipoCaso:new" }
+
+tipos-casos_create:
+    path:     /create
+    defaults: { _controller: "SgvsBundle:TipoCaso:create" }
+    methods:  POST
+
+tipos-casos_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SgvsBundle:TipoCaso:edit" }
+
+tipos-casos_update:
+    path:     /{id}/update
+    defaults: { _controller: "SgvsBundle:TipoCaso:update" }
+    methods:  [POST, PUT]
+
+tipos-casos_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SgvsBundle:TipoCaso:delete" }
+
+tipocaso_pdf:
+    path: /tipocaso-pdf
+    defaults: { _controller: "SgvsBundle:TipoCaso:pdf" }

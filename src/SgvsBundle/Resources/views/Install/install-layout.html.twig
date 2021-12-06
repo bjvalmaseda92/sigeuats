@@ -1,0 +1,32 @@
+{% extends '::base.html.twig' %}
+{% block title %}Welcome!{% endblock %}
+    {% block stylesheets %}
+        <link href="{{ asset('bundles/sgvs/css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/sgvs/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
+        <link href="{{ asset('bundles/sgvs/css/install.css') }}" rel="stylesheet" />
+
+    {% endblock %}
+
+{% block body %}
+    <div class="header navbar">
+        <!-- BEGIN TOP NAVIGATION BAR -->
+        <div class="header-inner">
+            <!-- BEGIN LOGO -->
+            <a class="navbar-brand" href="#">
+                <img src="{{ asset('sigueuats_logo.png') }}" alt="logo" class="img-responsive">
+            </a>
+
+        </div>
+        <!-- END TOP NAVIGATION BAR -->
+    </div>
+    <div class="container">
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('bundles/sgvs/js/jquerygrafica.js') }}"></script>
+    <script src="{{ asset('bundles/sgvs/js/bootstrap.min.js') }}"></script>
+{% endblock %}

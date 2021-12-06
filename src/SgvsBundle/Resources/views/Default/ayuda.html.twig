@@ -1,0 +1,179 @@
+{% extends 'backend.html.twig' %}
+{% block title %}Ayuda - SIGEUATS{% endblock %}
+{% block content %}
+        <section id="main-content" xmlns="http://www.w3.org/1999/html">
+                <section class="wrapper">
+                        <div class="row mt">
+                                <div class="col-md-12">
+                                        {% for mensaje in app.session.flashbag.get('success') %}
+                                                <div class="alert alert-success">{{ mensaje }}</div>
+                                        {% endfor %}
+                                </div>
+                        </div>
+                        <div class="content-panel padding-5">
+                                <h4><i class="fa fa-angle-right"></i> Ayuda</h4>
+                                <hr>
+                                <div class="panel-group" id="accordion">
+                                        <div class="panel panel-success">
+                                                <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#sigeuats">
+                                                                        <i class="fa fa-book"></i> Sistema de Gestión para las Unidades de Análisis de Salud (SIGEUATS)
+                                                                </a>
+                                                        </h4>
+                                                </div>
+                                                <div id="sigeuats" class="panel-collapse collapse" style="height: 0px;">
+                                                        <div class="panel-body">
+                                                                <p class="text-justify">
+                                                                        <strong>SIGEUATS</strong> o <strong>Sistema de Gestión para las Unidades de Análisis y
+                                                                                Tendencias de Salud</strong>, es un sistema informático que se encarga de gestionar la
+                                                                        información que es recopilada durante el proceso de vigilancia en salud en los
+                                                                        diferentes niveles del Ministerio de Salud Pública en la provincia de Sancti Spíritus.
+                                                                        Ayudando en el proceso de toma de decisiones sobre los problemas de salud o condiciones
+                                                                        relacionadas.
+                                                                </p>
+                                                                <p class="text-justify">
+                                                                        SIGEUATS está basado en el framework PHP Symfony2 en su versión 2.5,
+                                                                        el cual es una aplicación PHP desarrollada a partir de varios elementos individuales llamados
+                                                                        componentes y bundles, además de diversas librerías desarrolladas por terceros.
+                                                                </p>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div class="panel panel-success">
+                                                <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#admin">
+                                                                        <i class="fa fa-book"></i> Menú principal
+                                                                </a>
+                                                        </h4>
+                                                </div>
+                                                <div id="admin" class="panel-collapse collapse" style="height: 0px;">
+                                                        <div class="panel-body">
+                                                                <p class="text-justify">
+                                                                        El menú lateral o principal contiene un enlace a los paneles de administración de cada entidad de SIGEUATS.
+                                                                <div class="text-center col-md-12 col-lg-12">
+                                                                        <img src="{{ asset('bundles/sgvs/img/ayuda/menuprincipal.png') }}" class="img-responsive">
+                                                                </div>
+                                                                </p>
+                                                                <p class="text-justify">
+                                                                <p>
+                                                                        Pulsando en cualquiera de estos enlace podrá tener acceso e el panel de administración de la entidad selccionada.
+                                                                <div class="text-center col-md-12 col-lg-12">
+                                                                        <img src="{{ asset('bundles/sgvs/img/ayuda/usuarios.png') }}" class="img-responsive img-rounded">
+                                                                </div>
+                                                                </p>
+
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div class="panel panel-success">
+                                                <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#principal">
+                                                                        <i class="fa fa-book"></i> Panel de administración
+                                                                </a>
+                                                        </h4>
+                                                </div>
+                                                <div id="principal" class="panel-collapse collapse" style="height: 0px;">
+                                                        <div class="panel-body">
+                                                                <p class="text-justify">
+                                                                        En el panel de administración de cada entidad podrá vizualizar las acciones que se pueden realizar para cada entidad, además de los datos de dicha entidad
+                                                                <div class="text-center col-md-12 col-lg-12">
+                                                                        <img src="{{ asset('bundles/sgvs/img/ayuda/panel_admin.png') }}" class="img-responsive">
+                                                                </div>
+                                                                <ul>
+                                                                        <li><b>	1-Barra de título:</b> Muestra el nombre de cada elemento mostrado, haciendo clic sobre estos se puede ordenar el listado de elementos de forma ascendente o descendente por el valor que le corresponde a dicha columna.</li>
+                                                                        <li><b>	2-Información de las entidades:</b> En esta área se muestra la información de las entidades registradas en el sistema.</li>
+                                                                        <li><b>	3-Panel de acciones:</b> Se muestran todas las acciones disponibles para cada entidad.</li>
+                                                                        <li><b>	4-Cantidad de elementos:</b> Se pueden seleccionar el número de entidades a mostrar por páginas.</li>
+                                                                        <li><b> 5-Añadir una nueva entidad</b>: Es el botón utilizado para añadir una nueva entidad.</li>
+                                                                        <li><b> 6-Buscador:</b> Utilizado para filtrar el listado de entidades por cualquier criterio de búsqueda.</li>
+                                                                        <li><b> 7-Informe en PDF:</b> Pulsando en este botón el sistema genera un informe en formato PDF con el listado de todas las entidades de ese tipo existentes en el sistema.</li>
+                                                                        <li><b> 8-Paginador:</b> Permite avanzar por las diferentes páginas de los registros mostrados.</li>
+                                                                </ul>
+                                                                </p>
+
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div class="panel panel-success">
+                                                <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#add">
+                                                                        <i class="fa fa-book"></i> Panel de adición
+                                                                </a>
+                                                        </h4>
+                                                </div>
+                                                <div id="add" class="panel-collapse collapse" style="height: 0px;">
+                                                        <div class="panel-body">
+                                                                <p class="text-justify">
+                                                                        El panel de adición es aquel que te permite adicionar una entidad al sistema.                                                                <div class="text-center col-md-12 col-lg-12">
+                                                                        <img src="{{ asset('bundles/sgvs/img/ayuda/add.png') }}" class="img-responsive">
+                                                                </div>
+                                                                <ul>
+                                                                        <li><b>	1-Área del formulario:</b> En esta área se mostrarán todos los campos necesarios para la creación de una nueva entidad.</li>
+                                                                        <li><b>	2-Panel de botones:</b> En este panel se muestran dos botones uno para crear la nueva entidad luego de que todos los campos estén llenos y el otro para cancelar e ir a la página principal de la entidad correspondiente.</li>
+
+                                                                </ul>
+                                                                </p>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div class="panel panel-success">
+                                                <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#edit">
+                                                                        <i class="fa fa-book"></i> Panel de edición
+                                                                </a>
+                                                        </h4>
+                                                </div>
+                                                <div id="edit" class="panel-collapse collapse" style="height: 0px;">
+                                                        <div class="panel-body">
+                                                                <p class="text-justify">
+                                                                        El panel de edición es muy similar al de adicionar cualquier entidad, posee las mismas partes y el mismo funcionamiento, solo que los datos de la entidad a modificar son mostrados en el formulario.
+                                                                <div class="text-center col-md-12 col-lg-12">
+                                                                        <img src="{{ asset('bundles/sgvs/img/ayuda/edit.png') }}" class="img-responsive">
+                                                                </div>
+                                                                </p>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div class="panel panel-success">
+                                                <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#report">
+                                                                        <i class="fa fa-book"></i> Reportes epidemiológicos
+                                                                </a>
+                                                        </h4>
+                                                </div>
+                                                <div id="report" class="panel-collapse collapse" style="height: 0px;">
+                                                        <div class="panel-body">
+                                                                <p class="text-justify">
+                                                                        Para realizar cualquier reporte epidemiológico basta con seleccionar el criterio por el que se desea realizar dicho reporte dentro del menú de reportes epidemiológicos                                                                <div class="text-center col-md-12 col-lg-12">
+                                                                        <img src="{{ asset('bundles/sgvs/img/ayuda/reportes.png') }}" class="img-responsive">
+                                                                        <ul>
+                                                                                <li><b>	1-Área de selección de criterios:</b> En esta área usted podrá seleccionar los criterios para la confección de su reporte.</li>
+                                                                                <li><b>	2-Botón generar reporte:</b>Al hacer clic en este botón se genera el reporte de acuerdo a los criterios seleccionados.</li>
+
+                                                                        </ul>
+                                                                        Una vez generado el reporte este se muestra con la opción de generar un documento en PDF a partir del reporte seleccionado.
+                                                                        <img src="{{ asset('bundles/sgvs/img/ayuda/reportefull.png') }}" class="img-responsive">
+                                                                </div>
+                                                        </div>
+
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+        </section><!-- /MAIN CONTENT -->
+
+
+        <!--main content end-->
+        <!--footer start-->
+
+{% endblock %}
+{% block pagejavascripts %}
+{% endblock %}
+

@@ -1,0 +1,197 @@
+{% extends 'backend.html.twig' %}
+{% block menupanel %}
+    <li class="mt">
+        <a class="active" href="{{ path('sgvs_homepage') }}">
+            <i class="fa fa-dashboard"></i>
+            <span>Panel de Control</span>
+        </a>
+    </li>
+{% endblock %}
+{% block content %}
+        <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+
+                <div class="row">
+                    <div class="col-lg-12 main-chart">
+
+                        <div class="row mtbox">
+                            <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
+                                <div class="box1">
+                                    <i class="fa fa-users"></i>
+                                    <h3>{{ pacientes }}</h3>
+                                </div>
+                                <p>Pacientes registrados en el sistema</p></a>
+                            </div>
+                            <div class="col-md-2 col-sm-2 box0">
+                                <div class="box1">
+                                    <i class="fa fa-folder-open"></i>
+                                    <h3>{{ casos }}</h3>
+                                </div>
+                                <p>Casos en el sistema</p>
+                            </div>
+                            <div class="col-md-2 col-sm-2 box0">
+                                <div class="box1">
+                                    <i class="fa fa-flask"></i>
+                                    <h3>{{ examenes }}</h3>
+                                </div>
+                                <p>Exámenes realizados</p>
+                            </div>
+                            <div class="col-md-2 col-sm-2 box0">
+                                <div class="box1">
+                                    <i class="fa fa-plus-square"></i>
+                                    <h3>{{ enfermedades }}</h3>
+                                </div>
+                                <p>Enfermedades registradas en el sistema</p>
+                            </div>
+                            <div class="col-md-2 col-sm-2 box0">
+                                <div class="box1">
+                                    <i class="fa fa-book"></i>
+                                    <h3>Reportes</h3>
+                                </div>
+                                <a href="{{ path('reportes_enfermedades') }}"><p>Clic para generar reportes epidemiológicos</p></a>
+                            </div>
+
+                        </div><!-- /row mt -->
+
+
+                        <div class="row mt">
+                            <!-- SERVER STATUS PANELS -->
+                            <div class="col-md-4 col-sm-4 mb">
+                                <div class="white-panel pn donut-chart">
+                                    <div class="white-header">
+                                        <h5>CASOS INGRESADOS</h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-xs-6 goleft">
+                                            <p><i class="fa fa-folder-open"></i> {{ poringresados | number_format(2, '.')}} %</p>
+                                        </div>
+                                    </div>
+                                    <canvas id="casosingresados" height="120" width="120"></canvas>
+                                    <script>
+                                        var doughnutData = [
+                                            {
+                                                value: {{ poringresados }},
+                                                color:"#54A428"
+                                            },
+                                            {
+                                                value : {{ 100-poringresados }},
+                                                color : "#fdfdfd"
+                                            }
+                                        ];
+                                        var myDoughnut = new Chart(document.getElementById("casosingresados").getContext("2d")).Doughnut(doughnutData);
+                                    </script>
+                                </div><! --/grey-panel -->
+                            </div><!-- /col-md-4-->
+                            <div class="col-md-8 col-sm-8 mb">
+                                <div class="white-panel pn donut-chart">
+                                    <div class="white-header">
+                                        <h5>CASOS DETECTADOS</h5>
+                                    </div>
+                                    <div id="graficaLineal" style="width: 100%; height: 80%; margin: 0 auto">
+                                    </div>
+                                </div><! --/grey-panel -->
+                            </div>
+                            </div>
+                    </div><!-- /col-lg-9 END SECTION MIDDLE -->
+
+
+
+                </div><! --/row -->
+            </section>
+        </section>
+
+        <!--main content end-->
+        <!--footer start-->
+
+{% endblock %}
+{% block pagejavascripts %}
+    <script src="{{ asset('bundles/sgvs/plugins/highchart/highcharts.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/sgvs/plugins/highchart/exporting.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        var chart;
+        $(document).ready(function() {
+
+            chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'graficaLineal', 	// Le doy el nombre a la gráfica
+                    defaultSeriesType: 'line'	// Pongo que tipo de gráfica es
+                },
+                title: {
+                    text: 'Casos Detectados'	// Titulo (Opcional)
+                },
+                subtitle: {
+                    text: 'Últimos 7 días'		// Subtitulo (Opcional)
+                },
+                // Pongo los datos en el eje de las 'X'
+                xAxis: {
+                    categories: [{% for x in ejex %}'{{ x }}',{% endfor %}],
+                    // Pongo el título para el eje de las 'X'
+                    title: {
+                        text: 'Días'
+                    }
+                },
+                yAxis: {
+                    // Pongo el título para el eje de las 'Y'
+                    title: {
+                        text: 'Nº Casos'
+                    }
+                },
+                // Doy formato al la "cajita" que sale al pasar el ratón por encima de la gráfica
+                tooltip: {
+                    enabled: true,
+                    formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                                this.x +': '+ this.y +' '+this.series.name;
+                    }
+                },
+                // Doy opciones a la gráfica
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: true
+                    }
+                },
+                // Doy los datos de la gráfica para dibujarlas
+                series: [{
+                    name: 'Casos  detectados',
+                    data: [{% for cant in detectados %}{{ cant }},{% endfor %}]
+                },
+                    {
+                        name: 'Casos ingresados',
+                        data: [{% for cant in ingresados %}{{ cant }},{% endfor %}]
+                    },
+                ],
+            });
+        });
+    </script>
+
+    <script src="{{ asset('bundles/sgvs/js/sparkline-chart.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var unique_id = $.gritter.add({
+                // (string | mandatory) the heading of the notification
+                title: 'SIGEUATS!',
+                // (string | mandatory) the text inside the notification
+                text: 'Esta logueado como {{ usuario.nombre }}',
+                // (string | optional) the image to display on the left
+                image: '{{ asset('upload/users/profiles/'~ usuario.imagen ) }}',
+                // (bool | optional) if you want it to fade out on its own or just sit there
+                sticky: true,
+                // (int | optional) the time you want it to be alive for before fading out
+                time: '',
+                // (string | optional) the class name you want to apply to that specific message
+                class_name: 'my-sticky-class'
+            });
+
+            return false;
+        });
+    </script>
+
+{% endblock %}
+

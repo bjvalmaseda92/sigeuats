@@ -1,0 +1,83 @@
+{% extends 'backend.html.twig' %}
+{% block title %}Editar área de salud: {{ entity }} - SIGEUATS{% endblock %}
+{% block menuarea %}
+    {% if is_granted('ROLE_TECNICO') %}
+        <li class="sub-menu">
+            <a href="javascript:;" class="active">
+                <i class="fa fa-hospital-o"></i>
+                <span>Áreas de salud</span>
+            </a>
+            <ul class="sub">
+                <li><a  href="{{ path('areasalud') }}">Mostrar áreas</a></li>
+                <li><a  href="{{ path('areasalud_new') }}">Añadir área</a></li>
+            </ul>
+        </li>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row mt">
+                <div class="col-md-12">
+                    <div class="content-panel padding-5">
+                        <h4><i class="fa fa-angle-right"></i> Editar área de salud: {{ entity }}</h4>
+                        <hr>
+
+                        <form method="post" class="form-horizontal"  {{ form_enctype(edit_form) }} action="{{ path('areasalud_update', {'id': entity.id}) }}">
+                            <div class="form-group{% if form_errors(edit_form.nombre) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Nombre</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(edit_form.nombre, { 'attr': {'class': 'form-control'} }) }}
+                                    {% if form_errors(edit_form.nombre) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(edit_form.nombre) }}
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group {% if form_errors(edit_form.direccion) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Dirección</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(edit_form.direccion, { 'attr': {'class': 'form-control'} }) }}
+                                    {% if form_errors(edit_form.direccion) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(edit_form.direccion) }}
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group {% if form_errors(edit_form.correo) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Correo electrónico</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(edit_form.correo, { 'attr': {'class': 'form-control'} }) }}
+                                    {% if form_errors(edit_form.correo) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(edit_form.correo) }}
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group {% if form_errors(edit_form.telefono) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Teléfono</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(edit_form.telefono, { 'attr': {'class': 'form-control'} }) }}
+                                    {% if form_errors(edit_form.telefono) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(edit_form.telefono) }}
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {{ form_row(edit_form._token) }}
+                            <button class='btn btn-success' type="submit"><i class="fa fa-check-square-o"></i> Aceptar </button>
+                            <button class='btn btn-danger' type="reset"><i class="fa fa-minus-square-o"></i> Cancelar</button>
+
+                        </form>
+                    </div><!-- /content-panel -->
+                </div><!-- /col-md-12 -->
+            </div><!-- /row -->
+
+        </section><! --/wrapper -->
+    </section><!-- /MAIN CONTENT -->
+{% endblock %}
+

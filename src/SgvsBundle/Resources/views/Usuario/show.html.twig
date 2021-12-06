@@ -1,0 +1,54 @@
+{% extends 'backend.html.twig' %}
+{% block title %}{{ entity }} - SIGEUATS{% endblock %}
+{% block menuuser %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <li class="sub-menu">
+            <a href="javascript:;" class="active" >
+                <i class="fa fa-users"></i>
+                <span>Usuarios</span>
+            </a>
+            <ul class="sub">
+                <li><a  href="{{ path('usuario') }}">Mostrar usuarios</a></li>
+                <li><a  href="{{ path('usuario_new') }}">Añadir usuario</a></li>
+            </ul>
+        </li>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <section id="main-content" style="min-height: 768px">
+        <section class="wrapper">
+            <div class="row mt">
+                <div class="col-lg-12 col-md-12 col-sm-12 mb">
+                    <!-- WHITE PANEL - TOP USER -->
+                    <div class="white-panel pn">
+                        <div class="white-header">
+                            <h5>{{ entity }}</h5>
+                        </div>
+                        <p><img width="100" class="img-circle" src="{{ asset('upload/users/profiles/'~ entity.imagen) }}"></p>
+                        <p><b>{{ entity }}</b></p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="small mt">PERMISOS</p>
+                                <p> {% if entity.rol=='ROLE_ADMIN' %}
+                                        <span class="label label-danger label-mini">Admistrador</span>
+                                    {% elseif entity.rol=='ROLE_TECNICO'%}
+                                        <span class="label label-warning label-mini">Técnico UATS</span>
+                                    {% elseif entity.rol=='ROLE_CENTRO'%}
+                                        <span class="label label-info label-mini">Centro de salud</span>
+                                    {% else %}
+                                        <span class="label label-success label-mini">Usuario</span>
+                                    {% endif %}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="small mt">CORREO ELECTÓNICO</p>
+                                <p><a href="mailto:{{ entity.correo }}">{{ entity.correo }}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /row -->
+
+        </section><! --/wrapper -->
+    </section><!-- /MAIN CONTENT -->
+
+{% endblock %}

@@ -1,0 +1,12 @@
+install_step1:
+    path: /step/1
+    defaults: {_controller: SgvsBundle:Install:user}
+    methods: [GET, POST]
+
+install_index:
+    path: /
+    defaults: {_controller: SgvsBundle:Install:index}
+
+install_step2:
+    path: /step/2
+    defaults: {_controller: SgvsBundle:Install:step2}

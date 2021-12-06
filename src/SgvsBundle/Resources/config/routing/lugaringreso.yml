@@ -1,0 +1,33 @@
+lugaringreso:
+    path:     /
+    defaults: { _controller: "SgvsBundle:LugarIngreso:index" }
+
+lugaringreso_show:
+    path:     /{id}/show
+    defaults: { _controller: "SgvsBundle:LugarIngreso:show" }
+
+lugaringreso_new:
+    path:     /new
+    defaults: { _controller: "SgvsBundle:LugarIngreso:new" }
+
+lugaringreso_create:
+    path:     /create
+    defaults: { _controller: "SgvsBundle:LugarIngreso:create" }
+    methods:  POST
+
+lugaringreso_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SgvsBundle:LugarIngreso:edit" }
+
+lugaringreso_update:
+    path:     /{id}/update
+    defaults: { _controller: "SgvsBundle:LugarIngreso:update" }
+    methods:  [POST, PUT]
+
+lugaringreso_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SgvsBundle:LugarIngreso:delete" }
+
+lugaringreso_pdf:
+    path: /lugaringreso-pdf
+    defaults: { _controller: "SgvsBundle:LugarIngreso:pdf" }

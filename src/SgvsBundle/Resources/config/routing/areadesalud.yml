@@ -1,0 +1,33 @@
+areasalud:
+    path:     /
+    defaults: { _controller: "SgvsBundle:AreaDeSalud:index" }
+
+areasalud_show:
+    path:     /{id}/show
+    defaults: { _controller: "SgvsBundle:AreaDeSalud:show" }
+
+areasalud_new:
+    path:     /new
+    defaults: { _controller: "SgvsBundle:AreaDeSalud:new" }
+
+areasalud_create:
+    path:     /create
+    defaults: { _controller: "SgvsBundle:AreaDeSalud:create" }
+    methods:  POST
+
+areasalud_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SgvsBundle:AreaDeSalud:edit" }
+
+areasalud_update:
+    path:     /{id}/update
+    defaults: { _controller: "SgvsBundle:AreaDeSalud:update" }
+    methods:  [POST, PUT]
+
+areasalud_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SgvsBundle:AreaDeSalud:delete" }
+
+areadesalud_pdf:
+    path: /area-pdf
+    defaults: { _controller: "SgvsBundle:AreaDeSalud:pdf" }

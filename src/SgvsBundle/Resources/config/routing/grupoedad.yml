@@ -1,0 +1,33 @@
+grupo-edades:
+    path:     /
+    defaults: { _controller: "SgvsBundle:GrupoEdad:index" }
+
+grupo-edades_show:
+    path:     /{id}/show
+    defaults: { _controller: "SgvsBundle:GrupoEdad:show" }
+
+grupo-edades_new:
+    path:     /new
+    defaults: { _controller: "SgvsBundle:GrupoEdad:new" }
+
+grupo-edades_create:
+    path:     /create
+    defaults: { _controller: "SgvsBundle:GrupoEdad:create" }
+    methods:  POST
+
+grupo-edades_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SgvsBundle:GrupoEdad:edit" }
+
+grupo-edades_update:
+    path:     /{id}/update
+    defaults: { _controller: "SgvsBundle:GrupoEdad:update" }
+    methods:  [POST, PUT]
+
+grupo-edades_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SgvsBundle:GrupoEdad:delete" }
+
+grupoedad_pdf:
+    path: /grupoedad-pdf
+    defaults: { _controller: "SgvsBundle:GrupoEdad:pdf" }

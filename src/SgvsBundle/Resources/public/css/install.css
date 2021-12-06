@@ -1,0 +1,97 @@
+.form-wizard .progress {
+    margin-bottom: 30px;
+}
+
+.form-wizard .steps {
+    padding: 10px 0;
+    margin-bottom: 15px;
+}
+
+.form-wizard .steps {
+    background-color: #fff ;
+    background-image: none ;
+    filter:none ;
+    border: 0px;
+    box-shadow: none ;
+}
+
+.form-wizard .steps li span {
+    background-color: #fff ;
+    background-image: none ;
+    filter:none;
+    border: 0px;
+    box-shadow: none ;
+}
+
+.form-wizard .steps li a:hover {
+    background: none;
+}
+
+.form-wizard .step:hover {
+    text-decoration: none;
+}
+
+.form-wizard .step .number {
+    background-color: #eee;
+    display: inline-block;
+    text-align: center !important;
+    font-size: 16px;
+    font-weight: 300;
+    padding: 11px 15px 13px 15px;
+    margin-right: 10px;
+    height: 45px;
+    width: 45px;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+}
+
+.form-wizard .step .desc {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.form-wizard .active .step .number {
+    background-color: #73C9E3;
+    color: #fff;
+}
+
+.form-wizard .active .step .desc {
+    color: #333;
+    font-weight: 400;
+}
+
+.form-wizard .step i {
+    display: none;
+}
+
+.form-wizard .done .step .number {
+    background-color: #55A327;
+    color: #fff;
+}
+
+.form-wizard .done .step .desc {
+    font-weight: 400;
+}
+
+.form-wizard .done .step i {
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+    display: inline-block;
+}
+
+
+@media (min-width: 768px) and (max-width: 1280px) {
+    .form-wizard .step .desc {
+        margin-top: 10px;
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-wizard .steps > li > span {
+        text-align: left;
+    }
+}

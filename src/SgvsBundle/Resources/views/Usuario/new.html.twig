@@ -1,0 +1,111 @@
+{% extends 'backend.html.twig' %}
+{% block title %}Añadir usuario - SIGEUATS{% endblock %}
+
+{% block menuuser %}
+    {% if is_granted('ROLE_ADMIN') %}
+    <li class="sub-menu">
+        <a href="javascript:;" class="active" >
+            <i class="fa fa-users"></i>
+            <span>Usuarios</span>
+        </a>
+        <ul class="sub">
+            <li ><a  href="{{ path('usuario') }}">Mostrar usuarios</a></li>
+            <li class="active"><a  href="{{ path('usuario_new') }}">Añadir usuario</a></li>
+        </ul>
+    </li>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row mt">
+                <div class="col-md-12">
+                    <div class="content-panel padding-5">
+                        <h4><i class="fa fa-angle-right"></i> Nuevo usuario</h4>
+                        <hr>
+
+                        <form method="post" class="form-horizontal"  {{ form_enctype(form) }} action="{{ path('usuario_create') }}">
+                            <div class="form-group{% if form_errors(form.nombre) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Nombre</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.nombre, { 'attr': {'class': 'form-control'} }) }}
+                                    {% if form_errors(form.nombre) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(form.nombre) }}
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group {% if form_errors(form.apellidos) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Apellidos</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.apellidos, { 'attr': {'class': 'form-control'} }) }}
+                                    {% if form_errors(form.apellidos) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(form.apellidos) }}
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group {% if form_errors(form.nombreUsuario) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Nombre de usuario</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.nombreUsuario, { 'attr': {'class': 'form-control'} }) }}
+                                    {% if form_errors(form.nombreUsuario) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(form.nombreUsuario) }}
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group {% if form_errors(form.correo) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Correo electrónico</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.correo, { 'attr': {'class': 'form-control'} }) }}
+                                    {% if form_errors(form.correo) %}
+                                    <span class="help-block text-danger">
+                                        {{ form_errors(form.correo) }}
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label col-lg-2">Contraseña</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.password.first, { 'attr': {'class': 'form-control'} }) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label col-lg-2">Confirmar contraseña</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.password.second, { 'attr': {'class': 'form-control'} }) }}
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label col-lg-2">Permisos</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.rol, { 'attr': {'class': 'form-control'} }) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label col-lg-2">Imagen</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.picture) }}
+                                    <span class="help-block">Seleccione una imagen no mayor de 6MB en formato JPG/JPGE/PNG</span>
+                                </div>
+                            </div>
+                            {{ form_row(form._token) }}
+                            <button class='btn btn-success' type="submit"><i class="fa fa-check-square-o"></i> Crear </button>
+                            <button class='btn btn-danger' type="reset"><i class="fa fa-minus-square-o"></i> Cancelar</button>
+
+                        </form>
+                    </div><!-- /content-panel -->
+                </div><!-- /col-md-12 -->
+            </div><!-- /row -->
+
+        </section><! --/wrapper -->
+    </section><!-- /MAIN CONTENT -->
+{% endblock %}

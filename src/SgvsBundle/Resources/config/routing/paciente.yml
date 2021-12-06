@@ -1,0 +1,33 @@
+pacientes:
+    path:     /
+    defaults: { _controller: "SgvsBundle:Paciente:index" }
+
+pacientes_show:
+    path:     /{id}/show
+    defaults: { _controller: "SgvsBundle:Paciente:show" }
+
+pacientes_new:
+    path:     /new
+    defaults: { _controller: "SgvsBundle:Paciente:new" }
+
+pacientes_create:
+    path:     /create
+    defaults: { _controller: "SgvsBundle:Paciente:create" }
+    methods:  POST
+
+pacientes_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SgvsBundle:Paciente:edit" }
+
+pacientes_update:
+    path:     /{id}/update
+    defaults: { _controller: "SgvsBundle:Paciente:update" }
+    methods:  [POST, PUT]
+
+pacientes_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SgvsBundle:Paciente:delete" }
+
+paciente_pdf:
+    path: /paciente-pdf
+    defaults: { _controller: "SgvsBundle:Paciente:pdf" }

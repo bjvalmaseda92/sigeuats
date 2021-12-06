@@ -1,0 +1,33 @@
+casos:
+    path:     /
+    defaults: { _controller: "SgvsBundle:Caso:index" }
+
+casos_show:
+    path:     /{id}/show
+    defaults: { _controller: "SgvsBundle:Caso:show" }
+
+casos_new:
+    path:     /new
+    defaults: { _controller: "SgvsBundle:Caso:new" }
+
+casos_create:
+    path:     /create
+    defaults: { _controller: "SgvsBundle:Caso:create" }
+    methods:  POST
+
+casos_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SgvsBundle:Caso:edit" }
+
+casos_update:
+    path:     /{id}/update
+    defaults: { _controller: "SgvsBundle:Caso:update" }
+    methods:  [POST, PUT]
+
+casos_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SgvsBundle:Caso:delete" }
+
+casos_pdf:
+    path: /caso-pdf
+    defaults: { _controller: "SgvsBundle:Caso:pdf" }

@@ -1,0 +1,33 @@
+enfermedad:
+    path:     /
+    defaults: { _controller: "SgvsBundle:Enfermedad:index" }
+
+enfermedad_show:
+    path:     /{id}/show
+    defaults: { _controller: "SgvsBundle:Enfermedad:show" }
+
+enfermedad_new:
+    path:     /new
+    defaults: { _controller: "SgvsBundle:Enfermedad:new" }
+
+enfermedad_create:
+    path:     /create
+    defaults: { _controller: "SgvsBundle:Enfermedad:create" }
+    methods:  POST
+
+enfermedad_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SgvsBundle:Enfermedad:edit" }
+
+enfermedad_update:
+    path:     /{id}/update
+    defaults: { _controller: "SgvsBundle:Enfermedad:update" }
+    methods:  [POST, PUT]
+
+enfermedad_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SgvsBundle:Enfermedad:delete" }
+
+enfermedad_pdf:
+    path: /enfermedad-pdf
+    defaults: { _controller: "SgvsBundle:Enfermedad:pdf" }

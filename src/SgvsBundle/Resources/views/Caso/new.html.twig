@@ -1,0 +1,234 @@
+{% extends 'backend.html.twig' %}
+{% block title %}Nuevo caso- SIGEUATS{% endblock %}
+{% block pagestylesheets %}
+    <link href="{{ asset('bundles/sgvs/plugins/typeahead/typeahead.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/sgvs/plugins/daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet">
+{% endblock %}
+{% block menucasos %}
+    {% if is_granted('ROLE_TECNICO') %}
+        <li class="sub-menu">
+            <a href="javascript:;"  class="active">
+                <i class="fa  fa-folder-open"></i>
+                <span>Casos</span>
+            </a>
+            <ul class="sub">
+                <li><a  href="{{ path('casos') }}">Mostrar casos</a></li>
+                <li class="active"><a  href="{{ path('casos_new') }}">Añadir caso</a></li>
+            </ul>
+        </li>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row mt">
+                <div class="col-md-12">
+                    <div class="content-panel padding-5">
+                        <h4><i class="fa fa-angle-right"></i> Nuevo caso</h4>
+                        <hr>
+
+                        <form method="post" class="form-horizontal"  {{ form_enctype(form) }} action="{{ path('casos_create') }}">
+                            <div class="form-group{% if form_errors(form.nombrepaciente) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Paciente</label>
+                                <div class="col-lg-10">
+                                    <div class="input-group">
+											<span class="input-group-addon">
+												<i class="fa fa-user"></i>
+											</span>
+                                        {{ form_widget(form.nombrepaciente, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    {% if form_errors(form.nombrepaciente) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(form.nombrepaciente) }}
+                                    </span>
+                                    {% endif %}
+                                    <span class="help-block text-danger">Nombre y apellidos del paciente seguido de su número de identidad Ej: Carlos Lopez García - 87092136347</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group{% if form_errors(form.nombreenfermedad) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Enfermedad</label>
+                                <div class="col-lg-10">
+                                    <div class="input-group">
+											<span class="input-group-addon">
+												<i class="fa fa-plus-square"></i>
+											</span>
+                                        {{ form_widget(form.nombreenfermedad, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    {% if form_errors(form.nombreenfermedad) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(form.nombreenfermedad) }}
+                                    </span>
+                                    {% endif %}
+                                    <span class="help-block text-danger">Enfermedad diagnosticada al paciente</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group{% if form_errors(form.tipoCaso) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Tipo de caso</label>
+                                <div class="col-lg-10">
+                                    <div class="input-group">
+											<span class="input-group-addon">
+												<i class="fa fa-folder"></i>
+											</span>
+                                        {{ form_widget(form.tipoCaso, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    {% if form_errors(form.tipoCaso) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(form.tipoCaso) }}
+                                    </span>
+                                    {% endif %}
+                                    <span class="help-block text-danger">Tipo del caso detectado</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group{% if form_errors(form.fecha) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Fecha</label>
+                                <div class="col-lg-10">
+                                    <div class="input-group">
+                                          <span class="input-group-addon">
+                                              <i class="fa fa-calendar"></i>
+                                          </span>
+                                        {{ form_widget(form.fecha, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    {% if form_errors(form.fecha) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(form.fecha) }}
+                                    </span>
+                                    {% endif %}
+                                    <span class="help-block">Fecha de reportado el caso (DD-MM-YYYY)</span>
+                                </div>
+                            </div>
+                            <div class="form-group{% if form_errors(form.lugaringreso) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Lugar de ingreso</label>
+                                <div class="col-lg-10">
+                                    <div class="input-group">
+											<span class="input-group-addon">
+												<i class="fa fa-ambulance"></i>
+											</span>
+                                        {{ form_widget(form.lugaringreso, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    {% if form_errors(form.lugaringreso) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(form.lugaringreso) }}
+                                    </span>
+                                    {% endif %}
+                                    <span class="help-block text-danger">Seleccione un lugar de ingreso si el paciente fue ingresado</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group{% if form_errors(form.areadesalud) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Área de salud</label>
+                                <div class="col-lg-10">
+                                    <div class="input-group">
+											<span class="input-group-addon">
+												<i class="fa fa-hospital-o"></i>
+											</span>
+                                        {{ form_widget(form.areadesalud, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    {% if form_errors(form.areadesalud) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(form.areadesalud) }}
+                                    </span>
+                                    {% endif %}
+                                    <span class="help-block text-danger">Seleccione el área de salud donde se detectó el caso</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group{% if form_errors(form.info) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Información adicional</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.info, { 'attr': {'class': 'form-control'} }) }}
+                                    {% if form_errors(form.info) %}
+                                        <span class="help-block text-danger">
+                                            {{ form_errors(form.info) }}
+                                        </span>
+                                    {% endif %}
+                                    <span class="help-block">Información adicional sobre este caso</span>
+                                </div>
+                            </div>
+                            {{ form_row(form._token) }}
+                            <button class='btn btn-success' type="submit"><i class="fa fa-check-square-o"></i> Crear </button>
+                            <a href="{{ path('examenes') }}" class='btn btn-danger' type="reset"><i class="fa fa-minus-square-o"></i> Cancelar</a>
+
+                        </form>
+                    </div><!-- /content-panel -->
+                </div><!-- /col-md-12 -->
+            </div><!-- /row -->
+
+        </section><! --/wrapper -->
+    </section><!-- /MAIN CONTENT -->
+{% endblock %}
+{% block pagejavascripts %}
+    <script src="{{ asset('bundles/sgvs/js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/sgvs/plugins/typeahead/bloodhound.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/sgvs/plugins/typeahead/typeahead.jquery.js') }}"></script>
+    <script src="{{ asset('bundles/sgvs/plugins/daterangepicker/moment.min.js') }}"></script>
+    <script src="{{ asset('bundles/sgvs/plugins/daterangepicker/daterangepicker.js') }}"></script>
+        <script class="include" type="text/javascript" src="{{ asset('bundles/sgvs/js/jquery.dcjqaccordion.2.7.js') }}"></script>
+
+
+
+    <script language="javascript">
+        jQuery(document).ready(function() {
+          
+            var pacientes = [{% for paciente in pacientes %}'{{ paciente }} - {{paciente.ci}}',{% endfor %}];
+            var pacientes = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                // `states` is an array of state names defined in "The Basics"
+                local: pacientes
+            });
+
+           
+
+            // instantiate the typeahead UI
+            $('#sgvsbundle_caso_nombrepaciente').typeahead(null, {
+                name: 'pacientes',
+                        source: pacientes,
+                        templates: {
+                            empty: [
+                                '<div class="empty-message">',
+                                'No se encuentra ningún paciente registrado con esos datos',
+                                '</div>'
+                            ].join('\n'),}
+                    });
+
+            var enfermedades = [{% for enfermedad in enfermedades %}'{{ enfermedad }}',{% endfor %}];
+            var enfermedades = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                // `states` is an array of state names defined in "The Basics"
+                local: enfermedades
+            });
+            
+
+            // instantiate the typeahead UI
+            $('#sgvsbundle_caso_nombreenfermedad').typeahead(null, {
+                name: 'enfermedades',
+                        source: enfermedades,
+                        templates: {
+                            empty: [
+                                '<div class="empty-message">',
+                                'No se encuentra ninguna enfermedad registrada con ese nombre',
+                                '</div>'
+                            ].join('\n'),}
+                    });
+            });
+
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            $('input[name="sgvsbundle_caso[fecha]"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                format: 'DD-MM-YYYY',
+            })
+        });
+    </script>
+{% endblock %}
+
+
+
+
+

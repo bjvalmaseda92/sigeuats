@@ -1,0 +1,12 @@
+services:
+    validator.unique.exit_paciente:
+        class: SgvsBundle\Validator\Constraints\exitPacienteValidator
+        arguments: [@doctrine]
+        tags:
+            - { name: validator.constraint_validator, alias: exit_paciente }
+
+    validator.unique.exit_enfermedad:
+        class: SgvsBundle\Validator\Constraints\exitEnfermedadValidator
+        arguments: [@doctrine]
+        tags:
+            - { name: validator.constraint_validator, alias: exit_enfermedad }

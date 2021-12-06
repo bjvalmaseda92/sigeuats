@@ -1,0 +1,141 @@
+{% extends 'backend.html.twig' %}
+{% block title %}Reportes de ingresos - SIGEUATS{% endblock %}
+{% block pagestylesheets %}
+    <link href="{{ asset('bundles/sgvs/plugins/daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/sgvs/plugins/spinner/bootstrap-spinner.css') }}" rel="stylesheet">
+{% endblock %}
+{% block menureportes %}
+    {% if is_granted('ROLE_USUARIO') %}
+        <li class="sub-menu">
+            <a href="javascript:;" class="active">
+                <i class="fa fa-book"></i>
+                <span>Reportes de ingreso</span>
+            </a>
+            <ul class="sub">
+                <li ><a  href="{{ path('sgvs_bundle_tipos_casos') }}">Tipos de casos</a></li>
+                <li ><a  href="{{ path('reportes_enfermedades') }}">Enfermedades</a></li>
+                <li class="active"><a  href="{{ path('ingresos') }}">Ingresos</a></li>
+            </ul>
+        </li>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row mt">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <!-- -- BASIC BUTTONS ---->
+                    <div class="showback">
+                        <h3><i class="fa fa-angle-right"></i> Reporte de ingresos  </h3>
+                        <form action="{{ path('ingresos_post') }}" method="post">
+                            <div class="row">
+                            <div class="form-group col-md-12 col-lg-12">
+                                <label class="col-md-1 col-lg-1 control-label">Período:</label>
+                                <div class="col-md-5 col-lg-5">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="periodo"  value="diario"> Diario
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="periodo"  value="semanal"> Semanal
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="periodo"  value="mensual"> Mensual
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="periodo"  value="null" hidden>
+                                    </label>
+                                </div>
+                                <div  class="col-md-6 col-lg-6" id="areatiempo">
+
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-lg-12 col-md-12">
+                                    <button  class="btn btn-success" type="submit"><i class="fa fa-copy"></i> Generar</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div><!-- /showback -->
+
+                </div><!-- --/col-lg-12---->
+            </div>
+
+        </section><! --/wrapper -->
+    </section><!-- /MAIN CONTENT -->
+{% endblock %}
+{% block pagejavascripts %}
+    <script src="{{ asset('bundles/sgvs/plugins/spinner/jquery.spinner.js') }}"></script>
+    <script src="{{ asset('bundles/sgvs/plugins/daterangepicker/moment.min.js') }}"></script>
+    <script src="{{ asset('bundles/sgvs/plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <script>
+        $( "input[name='periodo']" )
+                .change(function() {
+                    var input = $( this ).val();
+                    if (input=="diario"){
+                        $("#areatiempo").html(
+                                '<div class="form-group">'+
+                                    '<label class="col-md-2 col-lg-2 control-label ">Fecha</label>'+
+                                    '<div class="col-lg-10 col-md-10">'+
+                                        '<div class="input-group">'+
+                                            '<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>'+
+                                            '<input required name="dia" type="text" class="form-control">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'
+                        );
+                        $(function() {
+                            $('input[name="dia"]').daterangepicker({
+                                singleDatePicker: true,
+                                showDropdowns: true,
+                                format: 'DD-MM-YYYY',
+                            })
+                        });
+                    }else if (input=="semanal"){
+                        $("#areatiempo").html(
+                                '<div class="form-group">'+
+                                '<label class="col-md-2 col-lg-2 control-label ">Semana</label>'+
+                                '<div class="col-lg-10 col-md-10">'+
+                                '<div class="input-group spinner" data-trigger="spinner">'+
+                                '<input required type="text" class="form-control text-center" value="1" data-rule="quantity" data-min="1" data-max="54" name="semana">'+
+                                '<div class="input-group-addon">'+
+                                '<a href="javascript:;" class="spin-up" data-spin="up"><i class="fa fa-caret-up"></i></a>'+
+                                '<a href="javascript:;" class="spin-down" data-spin="down"><i class="fa fa-caret-down"></i></a>'+
+                                '</div>'+
+                                '</div>'+
+                                '</div>'+
+                                '</div>'
+                        );
+                        initSpin($);
+                    }else if (input=="mensual"){
+                        $("#areatiempo").html('' +
+                                '<div class="form-group">'+
+                                    '<label class="col-md-2 col-lg-2 control-label ">Mes</label>'+
+                                    '<div class="col-lg-10 col-md-10">'+
+                                        '<select name="mes" class="form-control" required>' +
+                                            '<option value="01">Enero</option>' +
+                                            '<option value="02">Febrero</option>' +
+                                            '<option value="03">Marzo</option>' +
+                                            '<option value="04">Abril</option>' +
+                                            '<option value="05">Mayo</option>' +
+                                            '<option value="06">Junio</option>' +
+                                            '<option value="07">Julio</option>' +
+                                            '<option value="08">Agosto</option>' +
+                                            '<option value="09">Septiembre</option>' +
+                                            '<option value="10">Octubre</option>' +
+                                            '<option value="11">Noviembre</option>' +
+                                            '<option value="12">Diciembre</option>' +
+                                        '</select>');
+                                    '</div>'+
+                                '</div>'
+                    } else{
+                        $("#areatiempo").html(' ');
+                    }
+                })
+                .change();
+    </script>
+
+
+
+{% endblock %}

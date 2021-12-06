@@ -1,0 +1,60 @@
+{% extends 'SgvsBundle:Reportes:layout-pdf.html.twig' %}
+{% block title %}Informe de ingresos {% endblock %}
+{% block content %}
+    <table width="100%"  cellpadding="0" cellspacing="0" class="table table-striped">
+        <thead>
+        <th width="10%">Código</th>
+        <th width="25%">Nombre y apellidos</th>
+        <th width="25%">Dirección particular</th>
+        <th width="10%">Fecha</th>
+        <th width="6%">Enfermedad</th>
+        <th width="24%">Lugar de ingereso</th>
+        </thead>
+        {% for caso in casos %}
+            <tr>
+                <td>{{ caso.codigo }}</td>
+                <td>{{ caso.paciente }}</td>
+                <td>{{ caso.paciente.direccion }}</td>
+                <td>{{ caso.fecha | date('d-m-Y') }}</td>
+                <td>{{ caso.enfermedad }}</td>
+                <td>{{ caso.lugaringreso }}</td>
+            </tr>
+        {% else %}
+            <tr>
+              <td colspan="7" class="text-center text-danger">No hay casos ingresados para mostrar</td>
+            </tr>
+        {% endfor %}
+
+
+    </table>
+{% endblock %}
+{% block grafica %}
+    <div class="panel panel-default text-center">
+        <div class="panel-heading">{{ chartTitle }}
+        </div>
+        <div class="panel-body">
+            <div class="panel-body text-center">
+                <canvas id="grafica" height="300" width="1049"></canvas>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+{% block js %}
+<script>
+    var lineChartData = {
+        labels : [{% for x in ejex %}"{{ x }}",{% endfor %}],
+        datasets : [
+            {
+                fillColor : "rgba(84,164,40,0.5)",
+                strokeColor : "#54A428",
+                pointColor : "#54A428)",
+                pointStrokeColor : "#fff",
+                data : [{% for number in ingresados %}{{ number  }},{% endfor %}]
+            }
+        ]
+
+    };
+    new Chart(document.getElementById("grafica").getContext("2d")).Line(lineChartData);
+    </script>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'backend.html.twig' %}
+{% block title %}Caso {{ entity }} - SIGEUATS{% endblock %}
+{% block menucasos %}
+    {% if is_granted('ROLE_TECNICO') %}
+        <li class="sub-menu">
+            <a href="javascript:;" class="active" >
+                <i class="fa  fa-folder-open"></i>
+                <span>Casos</span>
+            </a>
+            <ul class="sub">
+                <li class="active"><a  href="{{ path('casos') }}">Mostrar casos</a></li>
+                <li><a  href="{{ path('casos_new') }}">Añadir caso</a></li>
+            </ul>
+        </li>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row mt">
+                <div class="col-md-12">
+                    {% for mensaje in app.session.flashbag.get('success') %}
+                        <div class="alert alert-success">{{ mensaje }}</div>
+                    {% endfor %}
+                    <div class="content-panel padding-5">
+                        <h4><i class="fa fa-angle-right"></i> Caso {{ entity }}</h4>
+                        <hr>
+                    </div><!-- /content-panel -->
+                </div><!-- /col-md-12 -->
+            </div><!-- /row -->
+
+        </section><! --/wrapper -->
+    </section><!-- /MAIN CONTENT -->
+{% endblock %}

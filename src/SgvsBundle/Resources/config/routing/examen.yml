@@ -1,0 +1,33 @@
+examenes:
+    path:     /
+    defaults: { _controller: "SgvsBundle:Examen:index" }
+
+examenes_show:
+    path:     /{id}/show
+    defaults: { _controller: "SgvsBundle:Examen:show" }
+
+examenes_new:
+    path:     /new
+    defaults: { _controller: "SgvsBundle:Examen:new" }
+
+examenes_create:
+    path:     /create
+    defaults: { _controller: "SgvsBundle:Examen:create" }
+    methods:  POST
+
+examenes_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SgvsBundle:Examen:edit" }
+
+examenes_update:
+    path:     /{id}/update
+    defaults: { _controller: "SgvsBundle:Examen:update" }
+    methods:  [POST, PUT]
+
+examenes_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SgvsBundle:Examen:delete" }
+
+examenes_pdf:
+    path: /examen-pdf
+    defaults: { _controller: "SgvsBundle:Examen:pdf" }

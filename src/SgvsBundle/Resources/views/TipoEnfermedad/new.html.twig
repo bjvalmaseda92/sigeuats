@@ -1,0 +1,51 @@
+{% extends 'backend.html.twig' %}
+{% block title %}Añadir tipo de enfermedad - SIGEUATS{% endblock %}
+{% block menutipo %}
+    {% if is_granted('ROLE_TECNICO') %}
+        <li class="sub-menu">
+            <a href="javascript:;" class="active">
+                <i class="fa fa-tags"></i>
+                <span>Tipos de enfermedad</span>
+            </a>
+            <ul class="sub">
+                <li><a  href="{{ path('tipoenfermedad') }}">Mostrar tipos</a></li>
+                <li class="active"><a  href="{{ path('tipoenfermedad_new') }}">Añadir tipo</a></li>
+            </ul>
+        </li>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row mt">
+                <div class="col-md-12">
+                    <div class="content-panel padding-5">
+                        <h4><i class="fa fa-angle-right"></i> Nuevo tipo de enefermedad</h4>
+                        <hr>
+
+                        <form method="post" class="form-horizontal"  {{ form_enctype(form) }} action="{{ path('tipoenfermedad_create') }}">
+                            <div class="form-group{% if form_errors(form.nombre) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Nombre</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.nombre, { 'attr': {'class': 'form-control'} }) }}
+                                    {% if form_errors(form.nombre) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(form.nombre) }}
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {{ form_row(form._token) }}
+                            <button class='btn btn-success' type="submit"><i class="fa fa-check-square-o"></i> Crear </button>
+                            <button class='btn btn-danger' type="reset"><i class="fa fa-minus-square-o"></i> Cancelar</button>
+
+                        </form>
+                    </div><!-- /content-panel -->
+                </div><!-- /col-md-12 -->
+            </div><!-- /row -->
+
+        </section><! --/wrapper -->
+    </section><!-- /MAIN CONTENT -->
+{% endblock %}
+
+

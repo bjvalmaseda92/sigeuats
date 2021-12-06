@@ -1,0 +1,29 @@
+{% extends 'SgvsBundle:Reportes:layout-pdf.html.twig' %}
+
+{% block title %}<h2>Informe de {{ tipo }} detectados</h2>{% endblock %}
+
+{% block content %}
+    <td colspan="3"><table width="100%"  cellpadding="0" cellspacing="0" class="table table-striped">
+        <thead>
+            <th width="12%">Código</th>
+            <th width="31%">Nombre y apellidos del paciente</th>
+            <th width="32%">Dirección particular</th>
+            <th width="12%">Fecha</th>
+            <th width="13%">Enfermedad</th>
+        </thead>
+        {% for caso in casos %}
+        <tr>
+            <td>{{ caso.codigo }}</td>
+            <td>{{ caso.paciente }}</td>
+            <td>{{ caso.paciente.direccion }}</td>
+            <td>{{ caso.fecha | date('d-m-Y') }}</td>
+            <td>{{ caso.enfermedad }}</td>
+        </tr>
+        {% else %}
+            <tr>
+                <td colspan="5" class="text-center text-danger">No hay casos para mostrar</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}

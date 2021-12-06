@@ -1,0 +1,44 @@
+sgvs_bundle_tipos_casos:
+    path: /tipos-casos
+    defaults: { _controller: SgvsBundle:Reportes:tiposCaso}
+    methods:   [GET]
+
+sgvs_bundle_tipos_casos_post:
+     path: /tipos-casos
+     defaults: { _controller: SgvsBundle:Reportes:tiposSelected}
+     methods:   [POST]
+
+reportes_enfermedades:
+    path: /enfermedades
+    defaults: { _controller: SgvsBundle:Reportes:enfermedades}
+    methods:   [GET]
+
+reportes_enfermedades_post:
+     path: /enfermedades
+     defaults: { _controller: SgvsBundle:Reportes:enfermedadesSelected}
+     methods:   [POST]
+
+tiposcasos_pdf:
+     path: /tiposcasos-pdf/
+     defaults: { _controller: SgvsBundle:Reportes:tiposPDF}
+     methods:   [GET]
+
+enfermedades_pdf:
+     path: /enfermedades-pdf/
+     defaults: { _controller: SgvsBundle:Reportes:enfermedadPDF}
+     methods:   [GET]
+
+ingresos:
+     path: /ingresos
+     defaults: {_controller: SgvsBundle:Reportes:ingresos}
+     methods: [GET]
+
+ingresos_post:
+     path: /ingresos
+     defaults: {_controller: SgvsBundle:Reportes:ingresoSelected}
+     methods: [POST]
+
+ingresos_pdf:
+     path: /ingresos-pdf/
+     defaults: { _controller: SgvsBundle:Reportes:ingresosPDF}
+     methods:   [GET]

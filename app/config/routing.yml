@@ -1,0 +1,3 @@
+sgvs:
+    resource: "@SgvsBundle/Resources/config/routing.yml"
+    prefix:   /

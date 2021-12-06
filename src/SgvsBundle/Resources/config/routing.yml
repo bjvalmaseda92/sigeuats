@@ -1,0 +1,73 @@
+sgvs_casos:
+    resource: "@SgvsBundle/Resources/config/routing/caso.yml"
+    prefix:   /casos
+
+sgvs_reportes:
+    resource: "@SgvsBundle/Resources/config/routing/reportes.yml"
+    prefix:   /reportes
+
+sgvs_install:
+    resource: "@SgvsBundle/Resources/config/routing/install.yml"
+    prefix:   /install
+
+sgvs_tipos-casos:
+    resource: "@SgvsBundle/Resources/config/routing/tipocaso.yml"
+    prefix:   /tipos-casos
+
+sgvs_examenes:
+    resource: "@SgvsBundle/Resources/config/routing/examen.yml"
+    prefix:   /examenes
+
+sgvs_pacientes:
+    resource: "@SgvsBundle/Resources/config/routing/paciente.yml"
+    prefix:   /pacientes
+
+sgvs_grupo-edades:
+    resource: "@SgvsBundle/Resources/config/routing/grupoedad.yml"
+    prefix:   /grupo-edades
+
+sgvs_tipoenfermedad:
+    resource: "@SgvsBundle/Resources/config/routing/tipoenfermedad.yml"
+    prefix:   /tipoenfermedad
+
+sgvs_enfermedad:
+    resource: "@SgvsBundle/Resources/config/routing/enfermedad.yml"
+    prefix:   /enfermedad
+
+sgvs_lugaringreso:
+    resource: "@SgvsBundle/Resources/config/routing/lugaringreso.yml"
+    prefix:   /lugaringreso
+
+sgvs_areasalud:
+    resource: "@SgvsBundle/Resources/config/routing/areadesalud.yml"
+    prefix:   /areasalud
+
+usuario_login:
+    path: /login
+    defaults: { _controller: SgvsBundle:Default:login}
+
+usuario_login_check:
+    path: /login_check
+
+usuario_logout:
+    path: /logout
+
+usuario_profile:
+    path: /profile
+    defaults: { _controller: SgvsBundle:Usuario:profile}
+
+usuario_profile_update:
+    path: /profile-update
+    defaults: { _controller: SgvsBundle:Usuario:profileUpdate}
+
+sgvs_usuario:
+    resource: "@SgvsBundle/Resources/config/routing/usuario.yml"
+    prefix:   /usuario
+
+sgvs_homepage:
+    path:     /
+    defaults: { _controller: SgvsBundle:Default:index }
+
+sgvs_ayuda:
+    path: /ayuda
+    defaults: {_controller: SgvsBundle:Default:ayuda}

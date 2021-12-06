@@ -1,0 +1,132 @@
+{% extends 'backend.html.twig' %}
+{% block title %}Editar examen - SIGEUATS{% endblock %}
+{% block pagestylesheets %}
+    <link href="{{ asset('bundles/sgvs/plugins/typeahead/typeahead.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/sgvs/plugins/daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet">
+{% endblock %}
+{% block menuexamnes %}
+    {% if is_granted('ROLE_TECNICO') %}
+        <li class="sub-menu">
+            <a href="javascript:;"  class="active">
+                <i class="fa  fa-flask"></i>
+                <span>Exámenes</span>
+            </a>
+            <ul class="sub">
+                <li  class="active"><a  href="{{ path('examenes') }}">Mostrar exámenes</a></li>
+                <li><a  href="{{ path('examenes_new') }}">Añadir examen</a></li>
+            </ul>
+        </li>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row mt">
+                <div class="col-md-12">
+                    <div class="content-panel padding-5">
+                        <h4><i class="fa fa-angle-right"></i> Editar examen</h4>
+                        <hr>
+
+                        <form method="post" class="form-horizontal"  {{ form_enctype(edit_form) }} action="{{ path('examenes_update', {'id': entity.id}) }}">
+                            <div class="form-group{% if form_errors(edit_form.nombrepaciente) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Paciente</label>
+                                <div class="col-lg-10">
+                                    <div class="input-group">
+											<span class="input-group-addon">
+												<i class="fa fa-user"></i>
+											</span>
+                                        {{ form_widget(edit_form.nombrepaciente, { 'attr': {'class': 'form-control',} }) }}
+                                    </div>
+                                    {% if form_errors(edit_form.nombrepaciente) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(edit_form.nombrepaciente) }}
+                                    </span>
+                                    {% endif %}
+                                    <span class="help-block text-danger">Nombre y apellidos del paciente seguido de su número de identidad Ej: Carlos Lopez García - 87092136347</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group{% if form_errors(edit_form.fecha) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Fecha</label>
+                                <div class="col-lg-10">
+                                    <div class="input-group">
+                                        {{ form_widget(edit_form.fecha, { 'attr': {'class': 'form-control'} }) }}
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                    {% if form_errors(edit_form.fecha) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(edit_form.fecha) }}
+                                    </span>
+                                    {% endif %}
+                                    <span class="help-block">Fecha de realizado el examen (DD-MM-YYYY)</span>
+                                </div>
+                            </div>
+                            <div class="form-group{% if form_errors(edit_form.fluorecencia) %} has-error{% endif %}">
+                                <label class="col-sm-2 control-label col-lg-2">Fluorecencia</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(edit_form.fluorecencia, { 'attr': {'class': 'form-control'} }) }}
+                                    {% if form_errors(edit_form.fluorecencia) %}
+                                        <span class="help-block text-danger">
+                                        {{ form_errors(edit_form.fluorecencia) }}
+                                    </span>
+                                    {% endif %}
+                                    <span class="help-block">Valor numérico de la fluorecencia resultada en el examen</span>
+
+                                </div>
+                            </div>
+                            {{ form_row(edit_form._token) }}
+                            <button class='btn btn-success' type="submit"><i class="fa fa-check-square-o"></i> Aceptar </button>
+                            <a href="{{ path('examenes') }}" class='btn btn-danger' type="reset"><i class="fa fa-minus-square-o"></i> Cancelar</a>
+
+                        </form>
+                    </div><!-- /content-panel -->
+                </div><!-- /col-md-12 -->
+            </div><!-- /row -->
+
+        </section><! --/wrapper -->
+    </section><!-- /MAIN CONTENT -->
+{% endblock %}
+{% block pagejavascripts %}
+    <script src="{{ asset('bundles/sgvs/js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/sgvs/plugins/typeahead/bloodhound.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/sgvs/plugins/typeahead/typeahead.jquery.js') }}"></script>
+    <script src="{{ asset('bundles/sgvs/plugins/daterangepicker/moment.min.js') }}"></script>
+    <script src="{{ asset('bundles/sgvs/plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <script class="include" type="text/javascript" src="{{ asset('bundles/sgvs/js/jquery.dcjqaccordion.2.7.js') }}"></script>
+
+
+
+    <script language="javascript">
+       jQuery(document).ready(function() {
+          
+            var pacientes = [{% for paciente in pacientes %}'{{ paciente }} - {{paciente.ci}}',{% endfor %}];
+            var pacientes = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                // `states` is an array of state names defined in "The Basics"
+                local: pacientes
+            });
+
+           
+
+            // instantiate the typeahead UI
+            $('#sgvsbundle_examen_nombrepaciente').typeahead(null, {
+                name: 'pacientes',
+                        source: pacientes,
+                        templates: {
+                            empty: [
+                                '<div class="empty-message">',
+                                'No se encuentra ningún paciente registrado con esos datos',
+                                '</div>'
+                            ].join('\n'),}
+                    });
+                $('#sgvsbundle_examen_nombrepaciente').typeahead('val','{{entity.paciente}} - {{entity.paciente.ci}}');
+
+            });
+</script>
+{% endblock %}
+
+
+
+
+

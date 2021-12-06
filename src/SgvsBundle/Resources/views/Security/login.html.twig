@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/sgvs/favicon.png') }}" />
+
+
+    <title>SIGEUATS - Sistema de Gestión UATS</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('bundles/sgvs/css/bootstrap.css') }}" rel="stylesheet">
+    <!--external css-->
+    <link href="{{ asset('bundles/sgvs/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('bundles/sgvs/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/sgvs/css/style-responsive.css') }}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<!-- **********************************************************************************************************************************************************
+MAIN CONTENT
+*********************************************************************************************************************************************************** -->
+
+<div id="login-page">
+    <div class="container">
+
+        <form class="form-login" action="{{ path('usuario_login_check') }}" method="post">
+            <h2 class="form-login-heading">Entrar</h2>
+            <div class="login-wrap {% if error %}has-error{% endif %}">
+                {% if error %}
+                    <div class="text-danger text-center">{{ error.message }}</div>
+                {% endif %}
+                <input type="text" id="username" name="_username" class="form-control" placeholder="Nombre de usuario" autofocus>
+                <br>
+                <input type="password" id="password" name="_password" class="form-control " placeholder="Contraseña">
+                <br/>		                
+                </label>
+                <button class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i> ENTRAR</button>
+
+
+
+            
+        </div>
+        </form>
+
+    </div>
+</div>
+
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="{{ asset('bundles/sgvs/js/jquery.js') }}"></script>
+<script src="{{ asset('bundles/sgvs/js/bootstrap.min.js') }}"></script>
+
+
+</body>
+</html>

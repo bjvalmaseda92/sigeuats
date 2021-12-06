@@ -1,0 +1,110 @@
+{% extends 'SgvsBundle:Install:install-layout.html.twig' %}
+{% block title %}Paso 1 de 2 - SIGEUATS{% endblock %}
+
+
+{% block content %}
+
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">SIGEUATS - Instalador</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-wizard">
+                <ul class="nav nav-pills nav-justified steps">
+                    <li class="active">
+                        <span data-toggle="tab" class="step">
+                            <span class="number">
+                                1
+                            </span>
+                            <span class="desc">
+                                <i class="fa fa-check"></i> Datos del administrador
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <span href="#tab2" data-toggle="tab" class="step">
+                            <span class="number">
+                                2
+                            </span>
+                            <span class="desc">
+                                <i class="fa fa-check"></i> Finalizar
+                            </span>
+                        </span>
+                    </li>
+                </ul>
+
+                <div id="bar" class="progress progress-striped active" role="progressbar">
+                    <div class="progress-bar progress-bar-info" style="width: 50%;">
+                    </div>
+                </div>
+            </div>
+
+            <form role="form" class="form-horizontal" action="{{ path('install_step1') }}" method="post">
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group{% if form_errors(form.nombre) %} has-error{% endif %}">
+                        <label class="col-sm-2 control-label col-lg-2">Nombre</label>
+                        <div class="col-lg-10">
+                            {{ form_widget(form.nombre, { 'attr': {'class': 'form-control'} }) }}
+                            {% if form_errors(form.nombre) %}
+                                <span class="help-block text-danger">
+                                    {{ form_errors(form.nombre) }}
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group {% if form_errors(form.apellidos) %} has-error{% endif %}">
+                        <label class="col-sm-2 control-label col-lg-2">Apellidos</label>
+                        <div class="col-lg-10">
+                            {{ form_widget(form.apellidos, { 'attr': {'class': 'form-control'} }) }}
+                            {% if form_errors(form.apellidos) %}
+                                <span class="help-block text-danger">
+                                    {{ form_errors(form.apellidos) }}
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group {% if form_errors(form.nombreUsuario) %} has-error{% endif %}">
+                        <label class="col-sm-2 control-label col-lg-2">Nombre de usuario</label>
+                        <div class="col-lg-10">
+                            {{ form_widget(form.nombreUsuario, { 'attr': {'class': 'form-control'} }) }}
+                            {% if form_errors(form.nombreUsuario) %}
+                                <span class="help-block text-danger">
+                                    {{ form_errors(form.nombreUsuario) }}
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group {% if form_errors(form.correo) %} has-error{% endif %}">
+                        <label class="col-sm-2 control-label col-lg-2">Correo electrónico</label>
+                        <div class="col-lg-10">
+                            {{ form_widget(form.correo, { 'attr': {'class': 'form-control'} }) }}
+                            {% if form_errors(form.correo) %}
+                                <span class="help-block text-danger">
+                                    {{ form_errors(form.correo) }}
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label col-lg-2">Contraseña</label>
+                        <div class="col-lg-10">
+                            {{ form_widget(form.password.first, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label col-lg-2">Confirmar contraseña</label>
+                        <div class="col-lg-10">
+                            {{ form_widget(form.password.second, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+                    {{ form_row(form._token) }}
+                    <div class="form-group text-center">
+                    <button class='btn btn-success' type="submit">Siguiente <i class="fa fa-arrow-circle-right"></i></button>
+                        </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}
